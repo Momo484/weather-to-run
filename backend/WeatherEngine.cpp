@@ -6,7 +6,6 @@ WeatherEngine::WeatherEngine() {
     // Initialize your research-backed weights here (60/20/10/10)
 }
 
-// Logic for extracting data from JSON and looping through the 168 hours
 nlohmann::json WeatherEngine::score_weather_data(const nlohmann::json& weather_data) {
     nlohmann::json output = nlohmann::json::array();
 
@@ -16,28 +15,64 @@ nlohmann::json WeatherEngine::score_weather_data(const nlohmann::json& weather_d
     auto wind_speeds = weather_data["hourly"]["windspeed_10m"];
     auto times = weather_data["hourly"]["time"];
 
-    
-    for (size_t i = 0; i < temps.size(); ++i) {
-      double temp = temps[i];
-      double dp = dew_points[i];
-      double cloud_percentage = clouds[i];
-      double wind_speed = wind_speeds[i];
+    // Open-Meteo returns 168 hours (7 days). We chunk them into arrays of 24.
+    size_t total_hours = temps.size();
+    size_t days = total_hours / 24;
 
-      double tempScore = score_temperature(temp);
-      double dewScore = score_dew_point(dp);
-      double cloudScore = score_clouds(cloud_percentage);
-      double windScore = score_wind(wind_speed);
+    for (size_t d = 0; d < days; ++d) {
+        // Create a new JSON object for this specific day
+        nlohmann::json day_data;
+        
+        // Initialize the empty arrays required by your TypeScript interface
+        day_data["time"] = nlohmann::json::array();
+        day_data["score"] = nlohmann::json::array();
+        day_data["rawTemp"] = nlohmann::json::array();
+        day_data["rawDp"] = nlohmann::json::array();
+        day_data["rawClouds"] = nlohmann::json::array();
+        day_data["rawWind"] = nlohmann::json::array();
+        day_data["scoredTemp"] = nlohmann::json::array();
+        day_data["scoredDp"] = nlohmann::json::array();
+        day_data["scoredClouds"] = nlohmann::json::array();
+        day_data["scoredWind"] = nlohmann::json::array();
 
-      double score = 60*tempScore + 20*dewScore + 10*cloudScore + 10*windScore;
-      output.push_back({
-        {"time", times[i]},
-        {"score", std::round(score * 10) / 10.0},
-            // Add raw data back into the JSON object
-        {"raw_temp", temp},
-        {"raw_dp", dp},
-        {"raw_clouds", cloud_percentage},
-        {"raw_wind", wind_speed}
-      });
+        // Loop exactly 24 times for the 24 hours in this specific day
+        for (size_t h = 0; h < 24; ++h) {
+            // Calculate the absolute index in the 168-hour array
+            size_t i = d * 24 + h; 
+            
+            // Failsafe just in case the API returns slightly less data
+            if (i >= total_hours) break; 
+
+            double temp = temps[i];
+            double dp = dew_points[i];
+            double cloud_percentage = clouds[i];
+            double wind_speed = wind_speeds[i];
+
+            double tempScore = score_temperature(temp);
+            double dewScore = score_dew_point(dp);
+            double cloudScore = score_clouds(cloud_percentage);
+            double windScore = score_wind(wind_speed);
+
+            double score = 60*tempScore + 20*dewScore + 10*cloudScore + 10*windScore;
+
+            // Push each hour's calculated data into this day's arrays
+            // Note: Keys now perfectly match your TypeScript camelCase!
+            day_data["time"].push_back(times[i]);
+            day_data["score"].push_back(std::round(score * 10) / 10.0);
+            
+            day_data["rawTemp"].push_back(temp);
+            day_data["rawDp"].push_back(dp);
+            day_data["rawClouds"].push_back(cloud_percentage);
+            day_data["rawWind"].push_back(wind_speed);
+            
+            day_data["scoredTemp"].push_back(tempScore);
+            day_data["scoredDp"].push_back(dewScore);
+            day_data["scoredClouds"].push_back(cloudScore);
+            day_data["scoredWind"].push_back(windScore);
+        }
+        
+        // Add the completed day object to our final output array
+        output.push_back(day_data);
     }
 
     return output;

@@ -30,16 +30,6 @@ private:
 
     // --- INTERNAL DATA STRUCTURES ---
     
-    // Struct to hold a single hour's processed data before turning it back to JSON
-    struct ScoredHour {
-        std::string timestamp;
-        double total_score;
-        double raw_temp;
-        double raw_dp;
-        double raw_clouds;
-        double raw_wind;
-        // You can add raw metrics here if the frontend needs them
-    };
 };
 
 #endif

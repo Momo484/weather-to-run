@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/aabhushan/Documents/weather-to-run/backend/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /opt/homebrew/opt/openssl/include
+CXX_INCLUDES = -I/Users/aabhushan/Documents/weather-to-run/backend/include -I/opt/homebrew/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /opt/homebrew/opt/openssl/include
 
 CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
 
