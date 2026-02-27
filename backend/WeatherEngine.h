@@ -1,7 +1,6 @@
 #ifndef WEATHER_ENGINE_H
 #define WEATHER_ENGINE_H
 
-#include <string>
 #include "include/nlohmann/json.hpp"
 
 // Use a class to encapsulate the scoring logic (The OOP Flex)
