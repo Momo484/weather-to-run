@@ -1,0 +1,46 @@
+ # =========================
+# 1. Build & Compile Output
+# =========================
+# Ignore the build folder completely so Mac binaries don't go to Linux
+build/
+bin/
+
+# Ignore compiled object files and executables
+*.o
+*.out
+*.exe
+*.a
+*.dylib
+*.so
+weather_engine
+
+# =========================
+# 2. CMake Generated Files
+# =========================
+# If you accidentally run cmake in the root instead of the build folder
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# =========================
+# 3. macOS Specific Files
+# =========================
+# These are hidden files Mac generates automatically that clutter up GitHub
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# =========================
+# 4. IDE & Editor Files
+# =========================
+# Ignore your personal workspace settings
+.vscode/
+.idea/
+*.swp
+*.swo

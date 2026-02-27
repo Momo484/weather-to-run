@@ -129,6 +129,30 @@ weather_engine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/weather_engine.dir/build.make CMakeFiles/weather_engine.dir/build
 .PHONY : weather_engine/fast
 
+WeatherEngine.o: WeatherEngine.cpp.o
+.PHONY : WeatherEngine.o
+
+# target to build an object file
+WeatherEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/weather_engine.dir/build.make CMakeFiles/weather_engine.dir/WeatherEngine.cpp.o
+.PHONY : WeatherEngine.cpp.o
+
+WeatherEngine.i: WeatherEngine.cpp.i
+.PHONY : WeatherEngine.i
+
+# target to preprocess a source file
+WeatherEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/weather_engine.dir/build.make CMakeFiles/weather_engine.dir/WeatherEngine.cpp.i
+.PHONY : WeatherEngine.cpp.i
+
+WeatherEngine.s: WeatherEngine.cpp.s
+.PHONY : WeatherEngine.s
+
+# target to generate assembly for a file
+WeatherEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/weather_engine.dir/build.make CMakeFiles/weather_engine.dir/WeatherEngine.cpp.s
+.PHONY : WeatherEngine.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... weather_engine"
+	@echo "... WeatherEngine.o"
+	@echo "... WeatherEngine.i"
+	@echo "... WeatherEngine.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
