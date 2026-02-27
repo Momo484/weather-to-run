@@ -1,0 +1,3 @@
+/Users/aabhushan/Documents/weather-to-run/build/CMakeFiles/weather_engine.dir
+/Users/aabhushan/Documents/weather-to-run/build/CMakeFiles/edit_cache.dir
+/Users/aabhushan/Documents/weather-to-run/build/CMakeFiles/rebuild_cache.dir

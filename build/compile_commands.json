@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/Users/aabhushan/Documents/weather-to-run/build",
+  "command": "/usr/bin/clang++  -I/Users/aabhushan/Documents/weather-to-run/backend/include -I/opt/homebrew/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /opt/homebrew/opt/openssl/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/weather_engine.dir/main.cpp.o -c /Users/aabhushan/Documents/weather-to-run/backend/main.cpp",
+  "file": "/Users/aabhushan/Documents/weather-to-run/backend/main.cpp",
+  "output": "CMakeFiles/weather_engine.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/aabhushan/Documents/weather-to-run/build",
+  "command": "/usr/bin/clang++  -I/Users/aabhushan/Documents/weather-to-run/backend/include -I/opt/homebrew/include -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /opt/homebrew/opt/openssl/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/weather_engine.dir/WeatherEngine.cpp.o -c /Users/aabhushan/Documents/weather-to-run/backend/WeatherEngine.cpp",
+  "file": "/Users/aabhushan/Documents/weather-to-run/backend/WeatherEngine.cpp",
+  "output": "CMakeFiles/weather_engine.dir/WeatherEngine.cpp.o"
+}
+]
