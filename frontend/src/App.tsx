@@ -48,7 +48,7 @@ function App() {
     const fetchRunningScores = async () => {
       try {
         // swap for renderURL when ready for deployment
-        const url = `http://localhost:8080/api/forecast?lat=${location.latitude}&lon=${location.longitude}`;
+        const url = `https://weather-to-run.onrender.com/api/forecast?lat=${location.latitude}&lon=${location.longitude}`;
 
         const response = await fetch(url);
 
