@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { LocationSearch } from "./components/LocationSearch";
+import Dashboard from "./components/Dashboard";
 
 interface LocationObj {
   longitude: string;
@@ -9,7 +10,7 @@ interface LocationObj {
   country?: string;
 }
 
-interface DayData {
+export interface DayData {
   time: string[];
   score: number[];
   rawTemp: number[];
@@ -72,7 +73,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-scree bg-amber-50 p-8 relative overflow-hidden">
+    <div className="min-h-screen bg-amber-50 p-8 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
         <header className="text-center mb-16">
           <h1 className="text-5xl font-bold text-amber-900 mb-3">
@@ -80,7 +81,7 @@ function App() {
           </h1>
           <div className="flex items-center justify-center gap-3">
             <span className="text-amber-800 font-medium text-lg">
-              `${location.name}, ${location.country}`
+              {`${location.name}${location.country ? `, ${location.country}` : ""}`}
             </span>
             <button
               className="px-5 py-2 text-sm bg-amber-200 hover:bg-amber-300 text-amber-900 rounded-full transition-color font-medium"
@@ -94,9 +95,11 @@ function App() {
         </header>
 
         {weatherData.length == 0 ? (
-          <div className="text-center text-amber-600">Loading...</div>
+          <div className="text-center text-amber-600">
+            Loading... This could take a while, i'm using render free :(
+          </div>
         ) : (
-          <h1>Bro</h1>
+          <Dashboard data={weatherData} />
         )}
       </div>
     </div>
