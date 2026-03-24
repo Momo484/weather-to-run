@@ -21,6 +21,7 @@ export interface DayData {
   scoredDp: number[];
   scoredClouds: number[];
   scoredWind: number[];
+  rains: number[];
 }
 
 function App() {

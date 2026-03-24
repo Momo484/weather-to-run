@@ -4,6 +4,7 @@ import type { DayData } from "../App";
 export function DayBar(dayData: DayData) {
   const [tooltip, setTooltip] = useState<{
     hour: number;
+    rain: number;
     score: number;
     x: number;
   } | null>(null);
@@ -41,6 +42,7 @@ export function DayBar(dayData: DayData) {
     setTooltip({
       hour: clampedHour,
       score: Math.round(dayData.score[clampedHour]),
+      rain: dayData.rains[clampedHour],
       x: x,
     });
   };
@@ -79,10 +81,13 @@ export function DayBar(dayData: DayData) {
             className="absolute -top-10 bg-amber-900 text-white px-3 py-1.5 rounded-lg text-sm whitespace-nowrap pointer-events-non shadow-lg"
             style={{
               left: `${tooltip.x}px`,
-              transform: `translateX(-50%)`,
+              transform: `translateX(-50%) translateY(-50%)`,
             }}
           >
-            {formatHour(tooltip.hour)}: {tooltip.score}%
+            <p>
+              {formatHour(tooltip.hour)}: {tooltip.score}%
+            </p>
+            <p>Rain: {tooltip.rain}mm</p>
           </div>
         )}
       </div>
