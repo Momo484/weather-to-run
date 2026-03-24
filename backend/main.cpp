@@ -27,7 +27,7 @@ int main() {
 
         std::string endpoint = "/v1/forecast?latitude=" + lat_str + 
                             "&longitude=" + lon_str + 
-                            "&hourly=temperature_2m,dewpoint_2m,cloudcover,windspeed_10m";
+                            "&hourly=temperature_2m,dewpoint_2m,cloudcover,windspeed_10m,rain";
 
         // using httplib to get weather data from open-meteo
         httplib::Client cli("https://api.open-meteo.com");

@@ -14,6 +14,7 @@ nlohmann::json WeatherEngine::score_weather_data(const nlohmann::json& weather_d
     auto clouds = weather_data["hourly"]["cloudcover"];
     auto wind_speeds = weather_data["hourly"]["windspeed_10m"];
     auto times = weather_data["hourly"]["time"];
+    auto rains = weather_data["hourly"]["rain"];
 
     // Open-Meteo returns 168 hours (7 days). We chunk them into arrays of 24.
     size_t total_hours = temps.size();
@@ -34,6 +35,7 @@ nlohmann::json WeatherEngine::score_weather_data(const nlohmann::json& weather_d
         day_data["scoredDp"] = nlohmann::json::array();
         day_data["scoredClouds"] = nlohmann::json::array();
         day_data["scoredWind"] = nlohmann::json::array();
+        day_data["rains"] = nlohmann::json::array();
 
         // Loop exactly 24 times for the 24 hours in this specific day
         for (size_t h = 0; h < 24; ++h) {
@@ -47,6 +49,7 @@ nlohmann::json WeatherEngine::score_weather_data(const nlohmann::json& weather_d
             double dp = dew_points[i];
             double cloud_percentage = clouds[i];
             double wind_speed = wind_speeds[i];
+            double rain = rains[i];
 
             double tempScore = score_temperature(temp);
             double dewScore = score_dew_point(dp);
@@ -69,6 +72,7 @@ nlohmann::json WeatherEngine::score_weather_data(const nlohmann::json& weather_d
             day_data["scoredDp"].push_back(dewScore);
             day_data["scoredClouds"].push_back(cloudScore);
             day_data["scoredWind"].push_back(windScore);
+            day_data["rains"].push_back(rain);
         }
         
         // Add the completed day object to our final output array
